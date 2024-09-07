@@ -20,7 +20,7 @@ function App() {
   };
 
   const renderHomeScreen = () => (
-    <div className="App">
+    <div className="App container">
       <h1>Your Collections</h1>
       {collections.length === 0 ? (
         <p>You don't have any collections yet.</p>
@@ -31,12 +31,12 @@ function App() {
           ))}
         </ul>
       )}
-      <button onClick={() => setScreen('create')}>Create Collection</button>
+      <button class="btn" onClick={() => setScreen('create')}>Create Collection</button>
     </div>
   );
 
   const renderCreateCollectionScreen = () => (
-    <div className="App">
+    <div className="App container">
       <h1>New Collection</h1>
       <h3>Enter a name for your new collection. You can rename it later.</h3>
       <input 
@@ -45,7 +45,7 @@ function App() {
         value={newCollectionName}
         onChange={(e) => setNewCollectionName(e.target.value)} 
       />
-      <button onClick={saveNewCollection}>Save</button>
+      <button className='btn' onClick={saveNewCollection}>Save</button>
     </div>
   );
 
@@ -63,10 +63,10 @@ function App() {
   };
 
   const renderCollectionDetailsScreen = () => (
-    <div className="App">
+    <div className="App container">
       <h1>{selectedCollection.name}</h1>
-      <button onClick={editCollectionName}>Edit Name</button>
-      <button onClick={deleteCollection}>Delete Collection</button>
+      <button className='btn' onClick={editCollectionName}>Edit Name</button>
+      <button className='btn' onClick={deleteCollection}>Delete Collection</button>
       
       {selectedCollection.words.length === 0 ? (
         <p>You haven't added anything to this collection yet.</p>
@@ -80,12 +80,12 @@ function App() {
         </ul>
       )}
       
-      <button onClick={() => setScreen('addWord')}>Add Word</button>
+      <button className='btn' onClick={() => setScreen('addWord')}>Add Word</button>
     </div>
   );
 
   const renderAddWordScreen = () => (
-    <div className="App">
+    <div className="App container">
       <h1>Add new word</h1>
       <input 
         type="text" 
@@ -127,8 +127,8 @@ function App() {
         </button>
       </div>
 
-      <button onClick={addWordToCollection}>Save</button>
-      <button onClick={() => setScreen('collectionDetails')}>Back</button>
+      <button className='btn' onClick={addWordToCollection}>Save</button>
+      <button className='btn' onClick={() => setScreen('collectionDetails')}>Back</button>
     </div>
   );
 
@@ -163,8 +163,7 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <button onClick={onClose}>Close</button>
+    <div className="App container">
       {screen === 'home' && renderHomeScreen()}
       {screen === 'create' && renderCreateCollectionScreen()}
       {screen === 'collectionDetails' && renderCollectionDetailsScreen()}
