@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import HomeScreen from './components/HomeScreen/HomeScreen.tsx';
+import CreateCollectionScreen from './components/CreateCollectionScreen/CreateCollectionScreen.tsx';
+import CollectionDetailsScreen from './components/CollectionDetailsScreen/CollectionDetailsScreen.tsx';
+import AddWordScreen from './components/AddWordScreen/AddWordScreen.tsx';
+
 const tg = window.Telegram.WebApp;
 
 function App() {
@@ -15,36 +20,6 @@ function App() {
     tg.ready();
   }, []);
 
-  const renderHomeScreen = () => (
-    <div className="App container">
-      <h1>Your Collections</h1>
-      {collections.length === 0 ? (
-        <p>You don't have any collections yet.</p>
-      ) : (
-        <ul>
-          {collections.map((collection, index) => (
-            <li key={index} onClick={() => openCollection(collection)}>{collection.name}</li>
-          ))}
-        </ul>
-      )}
-      <button class="btn" onClick={() => setScreen('create')}>Create Collection</button>
-    </div>
-  );
-
-  const renderCreateCollectionScreen = () => (
-    <div className="App container">
-      <h1>New Collection</h1>
-      <h3>Enter a name for your new collection. You can rename it later.</h3>
-      <input 
-        type="text" 
-        placeholder="Collection Name"
-        value={newCollectionName}
-        onChange={(e) => setNewCollectionName(e.target.value)} 
-      />
-      <button className='btn' onClick={saveNewCollection}>Save</button>
-    </div>
-  );
-
   const saveNewCollection = () => {
     if (newCollectionName.trim()) {
       setCollections([...collections, { name: newCollectionName, words: [] }]);
@@ -57,76 +32,6 @@ function App() {
     setSelectedCollection(collection);
     setScreen('collectionDetails');
   };
-
-  const renderCollectionDetailsScreen = () => (
-    <div className="App container">
-      <h1>{selectedCollection.name}</h1>
-      <button className='btn' onClick={editCollectionName}>Edit Name</button>
-      <button className='btn' onClick={deleteCollection}>Delete Collection</button>
-      
-      {selectedCollection.words.length === 0 ? (
-        <p>You haven't added anything to this collection yet.</p>
-      ) : (
-        <ul>
-          {selectedCollection.words.map((word, index) => (
-            <li key={index}>
-              <strong>{word.word}</strong> ({word.type}) - {word.definition}
-            </li>
-          ))}
-        </ul>
-      )}
-      
-      <button className='btn' onClick={() => setScreen('addWord')}>Add Word</button>
-    </div>
-  );
-
-  const renderAddWordScreen = () => (
-    <div className="App container">
-      <h1>Add new word</h1>
-      <input 
-        type="text" 
-        placeholder="Word"
-        value={newWord}
-        onChange={(e) => setNewWord(e.target.value)} 
-      />
-      <input 
-        type="text" 
-        placeholder="Definition"
-        value={newDefinition}
-        onChange={(e) => setNewDefinition(e.target.value)} 
-      />
-
-      <div className="wordTypeButtons">
-        <button 
-          className={wordType === 'Verb' ? 'selected' : ''}
-          onClick={() => setWordType('Verb')}
-        >
-          Verb
-        </button>
-        <button 
-          className={wordType === 'Noun' ? 'selected' : ''}
-          onClick={() => setWordType('Noun')}
-        >
-          Noun
-        </button>
-        <button 
-          className={wordType === 'Adj.' ? 'selected' : ''}
-          onClick={() => setWordType('Adj.')}
-        >
-          Adj.
-        </button>
-        <button 
-          className={wordType === 'Adv.' ? 'selected' : ''}
-          onClick={() => setWordType('Adv.')}
-        >
-          Adv.
-        </button>
-      </div>
-
-      <button className='btn' onClick={addWordToCollection}>Save</button>
-      <button className='btn' onClick={() => setScreen('collectionDetails')}>Back</button>
-    </div>
-  );
 
   const addWordToCollection = () => {
     if (newWord.trim() && newDefinition.trim() && wordType) {
@@ -159,11 +64,11 @@ function App() {
   };
 
   return (
-    <div className="App container">
-      {screen === 'home' && renderHomeScreen()}
-      {screen === 'create' && renderCreateCollectionScreen()}
-      {screen === 'collectionDetails' && renderCollectionDetailsScreen()}
-      {screen === 'addWord' && renderAddWordScreen()}
+    <div className="container">
+      {screen === 'home' && <HomeScreen collections={collections} onCreateClick={() => setScreen('create')} onOpenCollection={openCollection} />}
+      {screen === 'create' && <CreateCollectionScreen newCollectionName={newCollectionName} setNewCollectionName={setNewCollectionName} onSave={saveNewCollection} />}
+      {screen === 'collectionDetails' && <CollectionDetailsScreen selectedCollection={selectedCollection} onEdit={editCollectionName} onDelete={deleteCollection} onAddWord={() => setScreen('addWord')} />}
+      {screen === 'addWord' && <AddWordScreen newWord={newWord} setNewWord={setNewWord} newDefinition={newDefinition} setNewDefinition={setNewDefinition} wordType={wordType} setWordType={setWordType} onSave={addWordToCollection} onBack={() => setScreen('collectionDetails')} />}
     </div>
   );
 }
