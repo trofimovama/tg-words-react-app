@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button.tsx';
+import './CreateCollection.css';
 
 const CreateCollectionScreen = ({ newCollectionName, setNewCollectionName, onSave }) => (
   <div>

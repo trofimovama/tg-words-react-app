@@ -1,0 +1,12 @@
+.add-word-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edit-remove-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    cursor: pointer;
+}

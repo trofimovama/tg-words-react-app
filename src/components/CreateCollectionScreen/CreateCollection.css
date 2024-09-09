@@ -1,0 +1,9 @@
+.new-collection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.new-collection-title {
+    margin-bottom: 20px;
+}

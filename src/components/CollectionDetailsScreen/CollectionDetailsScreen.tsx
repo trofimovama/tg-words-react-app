@@ -1,6 +1,7 @@
 // src/components/CollectionDetailsScreen.js
 import React from 'react';
 import Button from '../Button/Button.tsx';
+import './CollectionDetails.css';
 
 const CollectionDetailsScreen = ({ selectedCollection, onEdit, onDelete, onAddWord }) => (
   <div>
