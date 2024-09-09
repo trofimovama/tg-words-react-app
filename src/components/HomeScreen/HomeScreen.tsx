@@ -1,11 +1,12 @@
 import React from 'react';
 import Button from '../Button/Button.tsx';
+import './HomeScreen.css';
 
 const HomeScreen = ({ collections, onCreateClick, onOpenCollection }) => (
-  <div>
+  <div className='home-screen container'>
     <h1>Your Collections</h1>
     {collections.length === 0 ? (
-      <p>You don't have any collections yet.</p>
+      <p className='collection-desc'>You don't have any collections yet.</p>
     ) : (
       <ul>
         {collections.map((collection, index) => (

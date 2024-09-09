@@ -1,0 +1,12 @@
+.btn {
+  padding: 11px 0;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.btn:hover {
+  cursor: pointer;
+  border: 1px solid var(--tg-theme-text-color);
+  background-color: lightgray;
+}
