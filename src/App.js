@@ -15,10 +15,6 @@ function App() {
     tg.ready();
   }, []);
 
-  const onClose = () => {
-    tg.close();
-  };
-
   const renderHomeScreen = () => (
     <div className="App container">
       <h1>Your Collections</h1>
