@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import './components/HomeScreen/HomeScreen.css';
 import './components/Button/Button.css';
@@ -8,6 +8,7 @@ import arrowRight from './assets/arrow-right.svg';
 import arrowLeft from './assets/arrow-left.svg';
 import editIcon from './assets/edit.svg';
 import removeIcon from './assets/delete.svg';
+import menuIcon from './assets/menu.svg';
 
 const tg = window.Telegram.WebApp;
 
@@ -19,6 +20,9 @@ function App() {
     const [newWord, setNewWord] = useState('');
     const [newDefinition, setNewDefinition] = useState('');
     const [wordType, setWordType] = useState('');
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const menuRef = useRef(null);
 
     useEffect(() => {
         tg.ready();
@@ -33,6 +37,22 @@ function App() {
             localStorage.setItem('collections', JSON.stringify(collections));
         }
     }, [collections]);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setMenuVisible(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuRef]);
+
+    const toggleMenu = () => {
+        setMenuVisible(!menuVisible);
+    };
 
     const renderHomeScreen = () => (
         <div className="container home-screen">
@@ -99,18 +119,23 @@ function App() {
 
     const renderCollectionDetailsScreen = () => (
         <div className="container add-word-container">
-            <div>
-                <h1>{selectedCollection.name}</h1>
-                <div className='edit-remove-group'>
-                    <div>
-                        <img src={editIcon} alt='Edit icon' />
-                        <button className="" onClick={editCollectionName}>Edit Name</button>
-                    </div>
-                    <div>
-                        <img src={removeIcon} alt='Remove icon' />
-                        <button className="" onClick={deleteCollection}>Delete Collection</button>
-                    </div>
+            <div className='top-collection-name'>
+                <div class='section-title'>
+                    <h1>{selectedCollection.name}</h1>
+                    <img src={menuIcon} alt='Menu icon' onClick={toggleMenu} className='menu' />
                 </div>
+                {menuVisible && (
+                    <div className='edit-remove-group' ref={menuRef}>
+                        <div className='edit-group-button'>
+                            <img src={editIcon} alt='Edit icon' />
+                            <button className="link-btn" onClick={editCollectionName}>Edit Name</button>
+                        </div>
+                        <div className='remove-group-button'>
+                            <img src={removeIcon} alt='Remove icon' />
+                            <button className="link-btn" onClick={deleteCollection}>Delete Collection</button>
+                        </div>
+                    </div>
+                )}
             </div>
             
             {selectedCollection.words.length === 0 ? (

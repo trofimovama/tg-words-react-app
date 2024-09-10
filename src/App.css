@@ -12,6 +12,18 @@ body {
   font-style: normal;
 }
 
+img {
+  cursor: pointer;
+}
+
+.link-btn {
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .container {
   margin: 60px 12px;
   height: calc(100vh - 120px);
