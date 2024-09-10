@@ -16,6 +16,14 @@ img {
   cursor: pointer;
 }
 
+h1 {
+  margin-bottom: 10px;
+}
+
+ul li {
+  list-style: none;
+}
+
 .link-btn {
   background: none;
   outline: none;
@@ -56,4 +64,85 @@ input:focus {
   border: none;
   font-size: 17px;
   cursor: pointer;
+}
+
+/* EDIT NAME SCREEN STYLES */
+
+.edit-name-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* DELETE COMFIRMATION SCREEN STYLES */
+
+.delete-confirmation {
+  position: relative;
+}
+
+.confirmation-block {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid lightgrey;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+/* .confirmation-buttons {
+  border-top: 1px solid lightgray;
+} */
+
+.btn-danger {
+  border-left: 1px solid lightgray;
+}
+
+.btn-danger,
+.btn-cancel {
+  padding: 20px 50px;
+  text-align: center;
+}
+
+.confirm-message {
+  padding: 35px 70px;
+  border-bottom: 1px solid lightgrey;
+  text-align: center;
+}
+
+/* ADD WORD SCREEN */
+
+.add-word-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-word-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wordTypeButtons {
+  display: flex;
+  gap: 0;
+  border-radius: 20px;
+}
+
+.wordTypeButtons button {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+
+.selected {
+  background-color: aliceblue;
 }
