@@ -25,6 +25,8 @@ function App() {
     const [editNameMode, setEditNameMode] = useState(false);
     const [editedName, setEditedName] = useState('');
     const [confirmDelete, setConfirmDelete] = useState(false);
+    const [editWordIndex, setEditWordIndex] = useState(null);
+    const [confirmDeleteWord, setConfirmDeleteWord] = useState(false);
 
     const menuRef = useRef(null);
 
@@ -121,6 +123,15 @@ function App() {
         setScreen('collectionDetails');
     };
 
+    const openEditWordScreen = (wordIndex) => {
+        const selectedWord = selectedCollection.words[wordIndex];
+        setNewWord(selectedWord.word);
+        setNewDefinition(selectedWord.definition);
+        setWordType(selectedWord.type);
+        setEditWordIndex(wordIndex);
+        setScreen('editWord');
+    };
+
     const renderCollectionDetailsScreen = () => (
         <div className="container add-word-container">
             <div className='top-collection-name'>
@@ -160,7 +171,7 @@ function App() {
                     />
                     <ul className='word-list'>
                         {selectedCollection.words.map((word, index) => (
-                            <li key={index} className='word-item'>
+                            <li key={index} className='word-item' onClick={() => openEditWordScreen(index)}>
                                 <strong>{word.word}</strong> ({word.type}) - {word.definition}
                             </li>
                         ))}
@@ -172,8 +183,6 @@ function App() {
         </div>
     );
     
-    
-
     const renderAddWordScreen = () => (
         <div className="container add-word-screen">
             <div className='add-word-content'>
@@ -225,7 +234,6 @@ function App() {
         </div>
     );
     
-
     const addWordToCollection = () => {
         if (newWord.trim() && newDefinition.trim() && wordType) {
             const updatedCollection = { 
@@ -243,42 +251,126 @@ function App() {
         }
     };
 
-    const saveEditedName = () => {
-        if (editedName.trim()) {
-            setCollections(collections.map(col => col === selectedCollection ? { ...col, name: editedName } : col));
-            setSelectedCollection({ ...selectedCollection, name: editedName });
-            setEditNameMode(false);
-            setEditedName('');
+    const saveEditedWord = () => {
+        if (newWord.trim() && newDefinition.trim() && wordType) {
+            const updatedWords = [...selectedCollection.words];
+            updatedWords[editWordIndex] = { word: newWord, definition: newDefinition, type: wordType };
+            const updatedCollection = { ...selectedCollection, words: updatedWords };
+            setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
+            setSelectedCollection(updatedCollection);
+            setScreen('collectionDetails');
+        } else {
+            alert("Please fill out all fields and select a word type.");
         }
     };
 
-    const renderEditNameScreen = () => (
-        <div className="container edit-name-screen">
-            <div className="header">
-                <div className='back-btn-container'>
-                    <img src={arrowLeft} alt='Arrow left'/>
-                    <button className="btn-back" onClick={() => setEditNameMode(false)}>Back</button>
-                </div>
-                <h1>Edit Collection Name</h1>
-                <input 
-                    type="text" 
-                    placeholder={selectedCollection.name}
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)} 
-                />
+    const deleteWord = () => {
+        const updatedWords = selectedCollection.words.filter((_, index) => index !== editWordIndex);
+        const updatedCollection = { ...selectedCollection, words: updatedWords };
+        setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
+        setSelectedCollection(updatedCollection);
+        setConfirmDeleteWord(false);
+        setScreen('collectionDetails');
+    };
+
+    const renderEditWordScreen = () => (
+        <div className="container edit-word-screen">
+            <div className='back-btn-container'>
+                <img src={arrowLeft} alt='Arrow left'/>
+                <button className="btn-back" onClick={() => setScreen('collectionDetails')}>{selectedCollection.name}</button>
             </div>
-            <button className="btn" onClick={saveEditedName}>Save</button>
+            <div className='edit-word-title'>
+                <h1>Edit Word</h1>
+                <img src={removeIcon} alt="Delete icon" onClick={() => setConfirmDeleteWord(true)} />
+            </div>
+            <input 
+                type="text" 
+                placeholder="Word"
+                value={newWord}
+                onChange={(e) => setNewWord(e.target.value)} 
+            />
+            <input 
+                type="text" 
+                placeholder="Definition"
+                value={newDefinition}
+                onChange={(e) => setNewDefinition(e.target.value)} 
+            />
+            <div className="wordTypeButtons">
+                <button 
+                    className={wordType === 'Verb' ? 'selected' : ''}
+                    onClick={() => setWordType('Verb')}
+                >
+                    Verb
+                </button>
+                <button 
+                    className={wordType === 'Noun' ? 'selected' : ''}
+                    onClick={() => setWordType('Noun')}
+                >
+                    Noun
+                </button>
+                <button 
+                    className={wordType === 'Adj.' ? 'selected' : ''}
+                    onClick={() => setWordType('Adj.')}
+                >
+                    Adj.
+                </button>
+                <button 
+                    className={wordType === 'Adv.' ? 'selected' : ''}
+                    onClick={() => setWordType('Adv.')}
+                >
+                    Adv.
+                </button>
+            </div>
+            <button className="btn" onClick={saveEditedWord}>Save</button>
         </div>
     );
 
-    const handleDeleteConfirmation = (confirm) => {
-        if (confirm) {
-            setCollections(collections.filter((col) => col !== selectedCollection));
-            setScreen('home');
-        } else {
-            setScreen('collectionDetails');
+    const renderDeleteWordConfirmationScreen = () => (
+        <div className="container delete-confirmation">
+            <div className="header">
+                <div className='back-btn-container'>
+                    <img src={arrowLeft} alt='Arrow left'/>
+                    <button className="btn-back" onClick={() => setConfirmDeleteWord(false)}>Back</button>
+                </div>
+                <h1>Delete Word</h1>
+            </div>
+            <div className="confirmation-block">
+                <p className="confirm-message">Delete ‘{newWord}’? This action can’t be undone.</p>
+                <div className="confirmation-buttons">
+                    <button className="btn-cancel" onClick={() => setConfirmDeleteWord(false)}>Cancel</button>
+                    <button className="btn-danger" onClick={deleteWord}>Delete</button>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderEditNameScreen = () => (
+        <div className="container edit-name-screen">
+            <h1>Edit Collection Name</h1>
+            <input 
+                type="text" 
+                value={editedName}
+                onChange={(e) => setEditedName(e.target.value)} 
+                placeholder="New Collection Name"
+            />
+            <button className="btn" onClick={saveCollectionName}>Save</button>
+        </div>
+    );
+
+    const saveCollectionName = () => {
+        if (editedName.trim()) {
+            const updatedCollection = { ...selectedCollection, name: editedName };
+            setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
+            setSelectedCollection(updatedCollection);
+            setEditNameMode(false);
         }
+    };
+
+    const deleteCollection = () => {
+        setCollections(collections.filter(col => col !== selectedCollection));
+        setSelectedCollection(null);
         setConfirmDelete(false);
+        setScreen('home');
     };
 
     const renderDeleteConfirmationScreen = () => (
@@ -286,15 +378,15 @@ function App() {
             <div className="header">
                 <div className='back-btn-container'>
                     <img src={arrowLeft} alt='Arrow left'/>
-                    <button className="btn-back" onClick={() => handleDeleteConfirmation(false)}>Back</button>
+                    <button className="btn-back" onClick={() => setConfirmDelete(false)}>Back</button>
                 </div>
                 <h1>Delete Collection</h1>
             </div>
             <div className="confirmation-block">
-                <p className="confirm-message">Delete {selectedCollection.name}? <br/> This action can’t be undone </p>
+                <p className="confirm-message">Delete ‘{selectedCollection.name}’? This action can’t be undone.</p>
                 <div className="confirmation-buttons">
-                    <button className="btn-cancel btn-back" onClick={() => handleDeleteConfirmation(false)}>Cancel</button>
-                    <button className="btn-danger btn-back" onClick={() => handleDeleteConfirmation(true)}>Delete</button>
+                    <button className="btn-cancel" onClick={() => setConfirmDelete(false)}>Cancel</button>
+                    <button className="btn-danger" onClick={deleteCollection}>Delete</button>
                 </div>
             </div>
         </div>
@@ -306,8 +398,10 @@ function App() {
             {screen === 'create' && renderCreateCollectionScreen()}
             {screen === 'collectionDetails' && !editNameMode && !confirmDelete && renderCollectionDetailsScreen()}
             {screen === 'addWord' && renderAddWordScreen()}
+            {screen === 'editWord' && renderEditWordScreen()}
             {editNameMode && renderEditNameScreen()}
             {confirmDelete && renderDeleteConfirmationScreen()}
+            {confirmDeleteWord && renderDeleteWordConfirmationScreen()}
         </div>
     );
 }
