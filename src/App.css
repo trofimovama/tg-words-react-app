@@ -1,3 +1,19 @@
+:root {
+  /* Default light mode colors */
+  --background-color: var(--tg-theme-bg-color, #ffffff);
+  --text-color: var(--tg-theme-text-color, #000000);
+  --primary-color: var(--tg-theme-button-color, #007aff);
+  --border-color: var(--tg-theme-hint-color, #d1d1d1);
+}
+
+[data-theme='dark'] {
+  /* Dark mode overrides */
+  --background-color: var(--tg-theme-bg-color, #1e1e1e);
+  --text-color: var(--tg-theme-text-color, #ffffff);
+  --primary-color: var(--tg-theme-button-color, #007aff);
+  --border-color: var(--tg-theme-hint-color, #3c3c3c);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,11 +40,7 @@ ul li {
   list-style: none;
 }
 
-.link-btn {
-  background: none;
-  outline: none;
-  border: none;
-  font-size: 16px;
+button {
   cursor: pointer;
 }
 
@@ -36,6 +48,16 @@ ul li {
   margin: 60px 12px;
   height: calc(100vh - 120px);
   box-sizing: border-box;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.collection-descr {
+  margin: 0 auto;
 }
 
 input {
@@ -66,15 +88,25 @@ input:focus {
   cursor: pointer;
 }
 
-/* EDIT NAME SCREEN STYLES */
+.confirmation-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.vertical-flex-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 
 .edit-name-screen {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
-/* DELETE COMFIRMATION SCREEN STYLES */
 
 .delete-confirmation {
   position: relative;
@@ -93,10 +125,6 @@ input:focus {
   border-radius: 20px;
 }
 
-/* .confirmation-buttons {
-  border-top: 1px solid lightgray;
-} */
-
 .btn-danger {
   border-left: 1px solid lightgray;
 }
@@ -111,46 +139,4 @@ input:focus {
   padding: 35px 70px;
   border-bottom: 1px solid lightgrey;
   text-align: center;
-}
-
-/* ADD WORD SCREEN */
-
-.add-word-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.add-word-content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.wordTypeButtons {
-  display: flex;
-  gap: 0;
-  border-radius: 20px;
-}
-
-.wordTypeButtons button {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  border: none;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-
-.selected {
-  background-color: aliceblue;
-}
-
-/* EDIT WORD SCREEN STYLES */
-
-.edit-word-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

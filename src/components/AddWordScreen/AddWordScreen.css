@@ -1,0 +1,30 @@
+.wordTypeButtons {
+  display: flex;
+  gap: 0;
+  border-radius: 20px;
+}
+
+.wordTypeButtons button {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.selected {
+  background-color: aliceblue;
+}
+
+.add-word-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-word-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

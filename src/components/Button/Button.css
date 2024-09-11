@@ -3,11 +3,22 @@
     font-size: 19px;
     border-radius: 20px;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
 }
 
 .btn:hover {
+    border: 1px solid var(--primary-color);
+}
+
+.link-btn {
+    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    outline: none;
+    border: none;
+    color: var(--text-color);
     cursor: pointer;
-    border: 1px solid var(--tg-theme-text-color);
-    background-color: lightgray;
+    font-size: 17px;
 }

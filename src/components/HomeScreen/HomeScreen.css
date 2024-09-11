@@ -4,10 +4,6 @@
     justify-content: space-between;
 }
 
-.collection-desc {
-    margin: 0 auto;
-}
-
 .collection-card {
     border:1px solid lightgray;
     padding: 20px;
