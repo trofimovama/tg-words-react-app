@@ -57,18 +57,20 @@ function CollectionDetailsScreen({
                 <p className='collection-descr'>You haven't added anything to this collection yet.</p>
             ) : (
                 <div className='collection-content'>
-                    <Button label="Play" onClick={() => console.log("Play")} className='btn' icon={playIcon} />
+                    <Button label="Play" onClick={() => setScreen('play')} className='btn btn-play' icon={playIcon} />
                     <input 
                         type="text" 
                         name="search"
                         className="search-input" 
                         placeholder="Search" 
-                        onChange={() => {}}  // Handle search if needed
+                        onChange={() => {}}
                     />
                     <ul className='word-list'>
                         {selectedCollection.words.map((word, index) => (
                             <li key={index} className='word-item' onClick={() => openEditWordScreen(index)}>
-                                <strong>{word.word}</strong> ({word.type}) - {word.definition}
+                                <strong>{word.word}</strong>
+                                {word.type && ` (${word.type})`}
+                                {word.definition && ` - ${word.definition}`}
                             </li>
                         ))}
                     </ul>

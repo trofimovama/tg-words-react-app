@@ -110,6 +110,9 @@ input:focus {
 
 .delete-confirmation {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .confirmation-block {

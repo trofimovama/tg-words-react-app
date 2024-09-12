@@ -3,3 +3,9 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.edit-word-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

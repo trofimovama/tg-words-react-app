@@ -12,6 +12,7 @@ import AddWordScreen from './components/AddWordScreen/AddWordScreen.js';
 import EditWordScreen from './components/EditWordScreen/EditWordScreen.js';
 import Button from './components/Button/Button.js';
 import Alert from './components/Alert/Alert.js';
+import PlayScreen from './components/PlayScreen/PlayScreen.js';
 
 import arrowLeft from './assets/arrow-left.svg';
 
@@ -32,6 +33,7 @@ function App() {
     const [editWordIndex, setEditWordIndex] = useState(null);
     const [confirmDeleteWord, setConfirmDeleteWord] = useState(false);
     const [alertMessage, setAlertMessage] = useState(null);
+    const [wordInputError, setWordInputError] = useState(false);
 
     const menuRef = useRef(null);
 
@@ -63,6 +65,15 @@ function App() {
         };
     }, [menuRef]);
 
+    useEffect(() => {
+        if (screen !== 'addWord') {
+            setNewWord('');
+            setNewDefinition('');
+            setWordType('');
+            setWordInputError(false);
+        }
+    }, [screen]);
+
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
     };
@@ -84,43 +95,49 @@ function App() {
 
     const openEditWordScreen = (wordIndex) => {
         const selectedWord = selectedCollection.words[wordIndex];
-        setNewWord(selectedWord.word);
-        setNewDefinition(selectedWord.definition);
-        setWordType(selectedWord.type);
+
+        setNewWord(selectedWord.word || '');
+        setNewDefinition(selectedWord.definition || '');
+        setWordType(selectedWord.type || '');
         setEditWordIndex(wordIndex);
         setScreen('editWord');
     };
     
     const addWordToCollection = () => {
-        if (newWord.trim() && newDefinition.trim() && wordType) {
-            const updatedCollection = { 
-                ...selectedCollection, 
-                words: [...selectedCollection.words, { word: newWord, definition: newDefinition, type: wordType }] 
-            };
-            setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
-            setSelectedCollection(updatedCollection);
-            setNewWord('');
-            setNewDefinition('');
-            setWordType('');
-            setScreen('collectionDetails');
-        } else {
-            setAlertMessage("Please fill out all fields and select a word type.");
+        if (newWord.trim() === '') {
+            setWordInputError(true);
+            return;
         }
+
+        const updatedCollection = { 
+            ...selectedCollection, 
+            words: [...selectedCollection.words, { word: newWord, definition: newDefinition, type: wordType }] 
+        };
+        setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
+        setSelectedCollection(updatedCollection);
+        setNewWord('');
+        setNewDefinition('');
+        setWordType('');
+        setWordInputError(false);
+        setScreen('collectionDetails');
     };
     
     const saveEditedWord = () => {
-        if (newWord.trim() && newDefinition.trim() && wordType) {
-            const updatedWords = [...selectedCollection.words];
-            updatedWords[editWordIndex] = { word: newWord, definition: newDefinition, type: wordType };
-            const updatedCollection = { ...selectedCollection, words: updatedWords };
-            setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
-            setSelectedCollection(updatedCollection);
-            setScreen('collectionDetails');
-        } else {
-            setAlertMessage("Please fill out all fields and select a word type.");
-        }
-    };
+        const updatedWords = [...selectedCollection.words];
+        
+        const updatedWord = {
+            word: newWord || selectedCollection.words[editWordIndex].word,
+            definition: newDefinition !== "" ? newDefinition : selectedCollection.words[editWordIndex].definition,  // Preserve definition if unchanged
+            type: wordType || selectedCollection.words[editWordIndex].type
+        };
     
+        updatedWords[editWordIndex] = updatedWord;
+    
+        const updatedCollection = { ...selectedCollection, words: updatedWords };
+        setCollections(collections.map(col => col === selectedCollection ? updatedCollection : col));
+        setSelectedCollection(updatedCollection);
+        setScreen('collectionDetails');
+    };    
 
     const deleteWord = () => {
         const updatedWords = selectedCollection.words.filter((_, index) => index !== editWordIndex);
@@ -256,6 +273,7 @@ function App() {
                     addWordToCollection={addWordToCollection}
                     setScreen={setScreen}
                     selectedCollection={selectedCollection}
+                    wordInputError={wordInputError}
                 />
             )}
             {screen === 'editWord' && (
@@ -270,6 +288,13 @@ function App() {
                     deleteWord={deleteWord}
                     setConfirmDeleteWord={setConfirmDeleteWord}
                     confirmDeleteWord={confirmDeleteWord}
+                    selectedCollection={selectedCollection}
+                    editWordIndex={editWordIndex}
+                    setScreen={setScreen}
+                />
+            )}
+            {screen === 'play' && (
+                <PlayScreen 
                     selectedCollection={selectedCollection}
                     setScreen={setScreen}
                 />

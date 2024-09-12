@@ -32,6 +32,7 @@
     padding: 15px;
     border-radius: 20px;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 .word-item:hover {
@@ -90,4 +91,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.btn-play {
+    padding: 20px;
 }
