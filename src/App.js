@@ -316,7 +316,7 @@ function App() {
             {alertMessage && <Alert message={alertMessage} onClose={() => setAlertMessage(null)} />}
             {editNameMode && renderEditNameScreen()}
             {confirmDelete && renderDeleteConfirmationScreen()}
-            {confirmDeleteWord && renderDeleteWordConfirmationScreen()}
+            {/* {confirmDeleteWord && renderDeleteWordConfirmationScreen()} */}
         </div>
     );
 }
