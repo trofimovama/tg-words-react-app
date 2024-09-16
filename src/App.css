@@ -81,6 +81,12 @@ input:focus {
   margin-bottom: 20px;
 }
 
+.btn-back-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .btn-back {
   background: none;
   border: none;

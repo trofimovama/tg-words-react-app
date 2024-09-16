@@ -50,7 +50,10 @@ function CollectionDetailsScreen({
     return (
         <div className="container add-word-container">
             <div className='top-collection-name'>
-                <Button label="Back" onClick={() => setScreen('home')} className='link-btn text-mode-color' icon={arrowLeft} />
+                <div className='btn-back-container'>
+                    <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
+                    <Button label="Back" onClick={() => setScreen('home')} className='link-btn text-mode-color' />
+                </div>
                 <div className='section-title'>
                     <h1>{selectedCollection.name}</h1>
                     <img src={menuIcon} alt='Menu icon' onClick={toggleMenu} className='menu' />

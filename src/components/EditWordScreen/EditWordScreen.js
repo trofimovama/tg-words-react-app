@@ -29,7 +29,7 @@ function EditWordScreen({
             <div className="container delete-confirmation">
                 <div className='edit-word-content'>
                     <div>
-                        <img src={arrowLeft} alt='Arrow left' />
+                        <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
                         <Button label="Back" onClick={() => setConfirmDeleteWord(false)} className='link-btn' />
                     </div>
                     <div className='title-container'>
@@ -59,7 +59,7 @@ function EditWordScreen({
             <div className="container edit-word-screen">
                 <div className='edit-word-content'>
                     <div className='back-btn-container'>
-                        <img src={arrowLeft} alt='Arrow left'/>
+                        <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
                         <Button label={selectedCollection.name} onClick={() => setScreen('collectionDetails')} className='link-btn' />
                     </div>
                     <div className='title-container'>

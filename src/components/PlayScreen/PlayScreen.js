@@ -87,7 +87,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
     return (
         <div className="container play-screen">
             <div className="top-bar">
-                <img src={closeIcon} alt="Close Icon" onClick={() => setScreen('collectionDetails')} />
+                <img src={closeIcon} alt="Close Icon" onClick={() => setScreen('collectionDetails')} className='text-mode-color' />
             </div>
 
             <div className="counters">

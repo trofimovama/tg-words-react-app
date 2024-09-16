@@ -164,6 +164,7 @@ function App() {
     const renderEditNameScreen = () => (
         <div className="container edit-name-screen">
             <div className="back-btn-container">
+                <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
                 <Button
                     label="Back"
                     onClick={() => {
@@ -171,7 +172,6 @@ function App() {
                         setMenuVisible(false);
                     }}
                     className="link-btn text-mode-color"
-                    icon={arrowLeft}
                 />
             </div>
             <h1>Edit Collection Name</h1>
@@ -214,7 +214,7 @@ function App() {
         <div className="container delete-confirmation">
             <div className="header">
                 <div className='back-btn-container'>
-                    <img src={arrowLeft} alt='Arrow left' />
+                    <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
                     <button className="btn-back" onClick={() => {
                         setConfirmDelete(false)
                         setMenuVisible(false);
