@@ -1,7 +1,5 @@
 import React from 'react';
 import Button from '../Button/Button.js'; 
-import arrowLeft from '../../assets/arrow-left.svg';
-import removeIcon from '../../assets/delete.svg';
 import './EditWordScreen.css';
 
 function EditWordScreen({
@@ -29,12 +27,12 @@ function EditWordScreen({
             <div className="container delete-confirmation">
                 <div className='edit-word-content'>
                     <div>
-                        <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
+                        <i class="fa-solid fa-chevron-left text-mode-color"></i>
                         <Button label="Back" onClick={() => setConfirmDeleteWord(false)} className='link-btn' />
                     </div>
                     <div className='title-container'>
-                            <h1>Edit word</h1>
-                            <img src={removeIcon} alt='Remove icon' onClick={() => setConfirmDeleteWord(true)} />
+                        <h1>Edit word</h1>
+                        <i class="fa-regular fa-trash-can text-mode-color" onClick={() => setConfirmDeleteWord(true)}></i>
                     </div>
                     <input 
                         type="text" 
@@ -59,12 +57,12 @@ function EditWordScreen({
             <div className="container edit-word-screen">
                 <div className='edit-word-content'>
                     <div className='back-btn-container'>
-                        <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
+                        <i class="fa-solid fa-chevron-left text-mode-color"></i>
                         <Button label={selectedCollection.name} onClick={() => setScreen('collectionDetails')} className='link-btn' />
                     </div>
                     <div className='title-container'>
                         <h1>Edit word</h1>
-                        <img src={removeIcon} alt='Remove icon' onClick={() => setConfirmDeleteWord(true)} />
+                        <i class="fa-regular fa-trash-can text-mode-color" onClick={() => setConfirmDeleteWord(true)}></i>
                     </div>
 
                     <input 

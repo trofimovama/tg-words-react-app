@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button.js';
-import arrowLeft from '../../assets/arrow-left.svg';
-import menuIcon from '../../assets/menu.svg';
-import editIcon from '../../assets/edit.svg';
-import removeIcon from '../../assets/delete.svg';
-import playIcon from '../../assets/play.svg';
 
 function CollectionDetailsScreen({
   selectedCollection,
@@ -51,21 +46,21 @@ function CollectionDetailsScreen({
         <div className="container add-word-container">
             <div className='top-collection-name'>
                 <div className='btn-back-container'>
-                    <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
+                    <i class="fa-solid fa-chevron-left text-mode-color"></i>
                     <Button label="Back" onClick={() => setScreen('home')} className='link-btn text-mode-color' />
                 </div>
                 <div className='section-title'>
                     <h1>{selectedCollection.name}</h1>
-                    <img src={menuIcon} alt='Menu icon' onClick={toggleMenu} className='menu' />
+                    <i class="fa-solid fa-ellipsis-vertical menu fa-2x text-mode-color" onClick={toggleMenu}></i>
                 </div>
                 {menuVisible && (
                     <div className='edit-remove-group' ref={menuRef}>
                         <div className='edit-group-button'>
-                            <img src={editIcon} alt='Edit icon' className='text-mode-color' />
+                            <i class="fa-regular fa-pen-to-square text-mode-color"></i>
                             <Button label="Edit Name" onClick={() => setEditNameMode(true)} className='link-btn' />
                         </div>
                         <div className='remove-group-button'>
-                            <img src={removeIcon} alt='Remove icon' className='text-mode-color' />
+                            <i class="fa-regular fa-trash-can text-mode-color"></i>
                             <Button label="Delete Collection" onClick={() => setConfirmDelete(true)} className='link-btn' />
                         </div>
                     </div>
@@ -76,8 +71,9 @@ function CollectionDetailsScreen({
                 <p className='collection-descr'>You haven't added anything to this collection yet.</p>
             ) : (
                 <div className='collection-content'>
-                    <Button label="Play" onClick={() => setScreen('play')} className='btn btn-play text-mode-color' icon={playIcon} />
-                    
+                    <button onClick={() => setScreen('play')} className='btn btn-play text-mode-color'>
+                        <i class="fa-regular fa-circle-play text-mode-color"></i> Play
+                    </button>
                     <input 
                         type="text" 
                         name="search"

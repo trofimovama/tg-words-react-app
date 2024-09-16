@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 import './components/HomeScreen/HomeScreen.css';
 import './components/Button/Button.css';
@@ -13,8 +14,6 @@ import EditWordScreen from './components/EditWordScreen/EditWordScreen.js';
 import Button from './components/Button/Button.js';
 import Alert from './components/Alert/Alert.js';
 import PlayScreen from './components/PlayScreen/PlayScreen.js';
-
-import arrowLeft from './assets/arrow-left.svg';
 
 const tg = window.Telegram.WebApp;
 
@@ -164,7 +163,7 @@ function App() {
     const renderEditNameScreen = () => (
         <div className="container edit-name-screen">
             <div className="back-btn-container">
-                <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
+                <i class="fa-solid fa-chevron-left text-mode-color"></i>
                 <Button
                     label="Back"
                     onClick={() => {
@@ -214,7 +213,7 @@ function App() {
         <div className="container delete-confirmation">
             <div className="header">
                 <div className='back-btn-container'>
-                    <img src={arrowLeft} alt='Arrow left' className='text-mode-color' />
+                    <i class="fa-solid fa-chevron-left text-mode-color"></i>
                     <button className="btn-back" onClick={() => {
                         setConfirmDelete(false)
                         setMenuVisible(false);

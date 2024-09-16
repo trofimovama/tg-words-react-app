@@ -1,5 +1,4 @@
 :root {
-  /* Default light mode colors */
   --background-color: var(--tg-theme-bg-color, #ffffff);
   --text-color: var(--tg-theme-text-color, #000000);
   --primary-color: var(--tg-theme-button-color, #007aff);
@@ -7,7 +6,6 @@
 }
 
 [data-theme='dark'] {
-  /* Dark mode overrides */
   --background-color: var(--tg-theme-bg-color, #1e1e1e);
   --text-color: var(--tg-theme-text-color, #ffffff);
   --primary-color: var(--tg-theme-button-color, #007aff);
@@ -18,6 +16,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+i {
+  cursor: pointer;
 }
 
 body {

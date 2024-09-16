@@ -1,5 +1,4 @@
 import React from 'react';
-import arrowRight from '../../assets/arrow-right.svg';
 import Button from '../Button/Button.js';
 
 function HomeScreen({ collections, openCollection, setScreen }) {
@@ -33,7 +32,7 @@ function HomeScreen({ collections, openCollection, setScreen }) {
                                     <p>{collection.words.length} {collection.words.length === 1 ? 'word' : 'words'}</p>
                                 </div>
                                 <div>
-                                    <img src={arrowRight} alt='Arrow right' className='text-mode-color'/>
+                                    <i class="fa-solid fa-chevron-right fa-lg text-mode-color"></i>
                                 </div>
                             </div>
                         ))}

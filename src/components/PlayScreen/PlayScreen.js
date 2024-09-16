@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 import swipeIcon from '../../assets/swipe-icon.svg';
-import closeIcon from '../../assets/close.svg';
-import flipIcon from '../../assets/flip.svg';
 import './PlayScreen.css';
 
 Chart.register(ArcElement, Tooltip, Legend);
@@ -87,7 +85,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
     return (
         <div className="container play-screen">
             <div className="top-bar">
-                <img src={closeIcon} alt="Close Icon" onClick={() => setScreen('collectionDetails')} className='text-mode-color' />
+                <i class="fa-solid fa-xmark fa-2x text-mode-color" onClick={() => setScreen('collectionDetails')}></i>
             </div>
 
             <div className="counters">
@@ -105,7 +103,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
                         <div className="card-face back">
                             <strong>{words[wordIndex]?.definition || 'No definition available'}</strong>
                         </div>
-                        <img src={flipIcon} alt='Flip card' className='flip-icon text-mode-color' onClick={toggleFlip} />
+                        <i class="fa-solid fa-arrows-rotate flip-icon text-mode-color"  onClick={toggleFlip}></i>
                     </div>
                     <div className='game-navigation-content'>
                         <span className='text-mode-color'>Swipe left to mark as Still learning</span>

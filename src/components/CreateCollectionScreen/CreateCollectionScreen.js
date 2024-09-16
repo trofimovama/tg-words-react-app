@@ -1,5 +1,4 @@
 import React from 'react';
-import arrowLeft from '../../assets/arrow-left.svg';
 import Button from '../Button/Button.js'; 
 
 function CreateCollectionScreen({ newCollectionName, setNewCollectionName, saveNewCollection, setScreen }) {
@@ -7,7 +6,7 @@ function CreateCollectionScreen({ newCollectionName, setNewCollectionName, saveN
         <div className="container new-collection">
             <div className="header">
                 <div className='back-btn-container'>
-                    <img src={arrowLeft} alt='Arrow left' className='text-mode-color'/>
+                    <i class="fa-solid fa-chevron-left text-mode-color"></i>
                     <Button label="Back" onClick={() => setScreen('home')} className='link-btn' />
                 </div>
                 <h1>New Collection</h1>

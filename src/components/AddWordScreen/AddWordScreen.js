@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../Button/Button.js';
-import arrowLeft from '../../assets/arrow-left.svg';
 import './AddWordScreen.css';
 
 function AddWordScreen({
@@ -19,7 +18,7 @@ function AddWordScreen({
     return (
         <div className="container add-word-screen">
             <div>
-                <img src={arrowLeft} alt="Arrow left" />
+                <i class="fa-solid fa-chevron-left text-mode-color"></i>
                 <Button
                     label={`${selectedCollection.name}`}
                     onClick={() => setScreen('collectionDetails')}
