@@ -161,25 +161,6 @@ function App() {
         setScreen('collectionDetails');
     };
 
-    const renderDeleteWordConfirmationScreen = () => (
-        <div className="container delete-confirmation">
-            <div className="header">
-                <div className='back-btn-container'>
-                    <img src={arrowLeft} alt='Arrow left'/>
-                    <button className="btn-back" onClick={() => setConfirmDeleteWord(false)}>Back</button>
-                </div>
-                <h1>Delete Word</h1>
-            </div>
-            <div className="confirmation-block">
-                <p className="confirm-message">Delete ‘{newWord}’? This action can’t be undone.</p>
-                <div className="confirmation-buttons">
-                    <button className="btn-cancel" onClick={() => setConfirmDeleteWord(false)}>Cancel</button>
-                    <button className="btn-danger" onClick={deleteWord}>Delete</button>
-                </div>
-            </div>
-        </div>
-    );
-
     const renderEditNameScreen = () => (
         <div className="container edit-name-screen">
             <div className="back-btn-container">
@@ -316,7 +297,6 @@ function App() {
             {alertMessage && <Alert message={alertMessage} onClose={() => setAlertMessage(null)} />}
             {editNameMode && renderEditNameScreen()}
             {confirmDelete && renderDeleteConfirmationScreen()}
-            {/* {confirmDeleteWord && renderDeleteWordConfirmationScreen()} */}
         </div>
     );
 }
