@@ -33,7 +33,7 @@ function HomeScreen({ collections, openCollection, setScreen }) {
                                     <p>{collection.words.length} {collection.words.length === 1 ? 'word' : 'words'}</p>
                                 </div>
                                 <div>
-                                    <img src={arrowRight} alt='Arrow right'/>
+                                    <img src={arrowRight} alt='Arrow right' className='text-mode-color'/>
                                 </div>
                             </div>
                         ))}

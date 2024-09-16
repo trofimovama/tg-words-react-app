@@ -17,7 +17,7 @@
 }
 
 button.selected {
-  background-color: aliceblue;
+  background-color: var(--border-color);
 }
 
 .add-word-screen {

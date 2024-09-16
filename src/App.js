@@ -170,7 +170,7 @@ function App() {
                         setEditNameMode(false);
                         setMenuVisible(false);
                     }}
-                    className="link-btn"
+                    className="link-btn text-mode-color"
                     icon={arrowLeft}
                 />
             </div>
@@ -181,7 +181,7 @@ function App() {
                 onChange={(e) => setEditedName(e.target.value)}
                 placeholder={selectedCollection ? selectedCollection.name : 'New Collection Name'}
             />
-            <button className="btn" onClick={saveCollectionName}>Save</button>
+            <button className="btn text-mode-color" onClick={saveCollectionName}>Save</button>
         </div>
     );
 

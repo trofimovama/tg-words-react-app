@@ -105,16 +105,16 @@ function PlayScreen({ selectedCollection, setScreen }) {
                         <div className="card-face back">
                             <strong>{words[wordIndex]?.definition || 'No definition available'}</strong>
                         </div>
-                        <img src={flipIcon} alt='Flip card' className='flip-icon' onClick={toggleFlip} />
+                        <img src={flipIcon} alt='Flip card' className='flip-icon text-mode-color' onClick={toggleFlip} />
                     </div>
                     <div className='game-navigation-content'>
-                        <span>Swipe left to mark as Still learning</span>
-                        <span>Swipe right to mark as Known</span>
+                        <span className='text-mode-color'>Swipe left to mark as Still learning</span>
+                        <span className='text-mode-color'>Swipe right to mark as Known</span>
                         <div className="swipe-controls">
-                            <img src={swipeIcon} alt="Swipe Icon" />
+                            <img src={swipeIcon} alt="Swipe Icon" className='text-mode-color' />
                             <div className="swipe-buttons">
-                                <button onClick={handleSwipeLeft} className='btn'>Still Learning</button>
-                                <button onClick={handleSwipeRight} className='btn'>Known</button>
+                                <button onClick={handleSwipeLeft} className='btn text-mode-color'>Still Learning</button>
+                                <button onClick={handleSwipeRight} className='btn text-mode-color'>Known</button>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
                             <p>{getUnknownPercentage()}% - Still Learning</p>
                         </div>
                         {unknownWords.length > 0 && (
-                            <button className="retry-button btn" onClick={retryUnlearnedWords}>
+                            <button className="retry-button btn text-mode-color" onClick={retryUnlearnedWords}>
                                 Retry Unlearned Words
                             </button>
                         )}

@@ -88,6 +88,10 @@ input:focus {
   cursor: pointer;
 }
 
+.text-mode-color {
+  color: var(--text-color);
+}
+
 .confirmation-buttons {
   display: flex;
   justify-content: space-around;

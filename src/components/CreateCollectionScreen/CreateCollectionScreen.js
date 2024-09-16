@@ -7,7 +7,7 @@ function CreateCollectionScreen({ newCollectionName, setNewCollectionName, saveN
         <div className="container new-collection">
             <div className="header">
                 <div className='back-btn-container'>
-                    <img src={arrowLeft} alt='Arrow left'/>
+                    <img src={arrowLeft} alt='Arrow left' className='text-mode-color'/>
                     <Button label="Back" onClick={() => setScreen('home')} className='link-btn' />
                 </div>
                 <h1>New Collection</h1>
@@ -22,7 +22,7 @@ function CreateCollectionScreen({ newCollectionName, setNewCollectionName, saveN
                     onChange={(e) => setNewCollectionName(e.target.value)}
                 />
             </div>
-            <Button label="Save" onClick={saveNewCollection} className='btn' />
+            <Button label="Save" onClick={saveNewCollection} className='btn text-mode-color' />
         </div>
     );
 }

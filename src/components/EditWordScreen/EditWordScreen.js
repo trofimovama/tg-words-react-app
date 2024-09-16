@@ -51,7 +51,7 @@ function EditWordScreen({
                         <button className="link-btn" onClick={deleteWord}>Delete</button>
                     </div>
                 </div>
-                <Button label="Save" onClick={saveEditedWord} className='btn' />
+                <Button label="Save" onClick={saveEditedWord} className='btn text-mode-color' />
             </div>
         );
     } else {
@@ -107,7 +107,7 @@ function EditWordScreen({
                     </div>
                 </div>
                 
-                <Button label="Save" onClick={saveEditedWord} className='btn' />
+                <Button label="Save" onClick={saveEditedWord} className='btn text-mode-color' />
             </div>
         );
     }

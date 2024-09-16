@@ -50,7 +50,7 @@ function CollectionDetailsScreen({
     return (
         <div className="container add-word-container">
             <div className='top-collection-name'>
-                <Button label="Back" onClick={() => setScreen('home')} className='link-btn' icon={arrowLeft} />
+                <Button label="Back" onClick={() => setScreen('home')} className='link-btn text-mode-color' icon={arrowLeft} />
                 <div className='section-title'>
                     <h1>{selectedCollection.name}</h1>
                     <img src={menuIcon} alt='Menu icon' onClick={toggleMenu} className='menu' />
@@ -58,11 +58,11 @@ function CollectionDetailsScreen({
                 {menuVisible && (
                     <div className='edit-remove-group' ref={menuRef}>
                         <div className='edit-group-button'>
-                            <img src={editIcon} alt='Edit icon' />
+                            <img src={editIcon} alt='Edit icon' className='text-mode-color' />
                             <Button label="Edit Name" onClick={() => setEditNameMode(true)} className='link-btn' />
                         </div>
                         <div className='remove-group-button'>
-                            <img src={removeIcon} alt='Remove icon' />
+                            <img src={removeIcon} alt='Remove icon' className='text-mode-color' />
                             <Button label="Delete Collection" onClick={() => setConfirmDelete(true)} className='link-btn' />
                         </div>
                     </div>
@@ -73,7 +73,7 @@ function CollectionDetailsScreen({
                 <p className='collection-descr'>You haven't added anything to this collection yet.</p>
             ) : (
                 <div className='collection-content'>
-                    <Button label="Play" onClick={() => setScreen('play')} className='btn btn-play' icon={playIcon} />
+                    <Button label="Play" onClick={() => setScreen('play')} className='btn btn-play text-mode-color' icon={playIcon} />
                     
                     <input 
                         type="text" 
@@ -100,7 +100,7 @@ function CollectionDetailsScreen({
                 </div>
             )}
 
-            <Button label="Add Word" onClick={() => setScreen('addWord')} className='btn' />
+            <Button label="Add Word" onClick={() => setScreen('addWord')} className='btn text-mode-color' />
         </div>
     );
 }

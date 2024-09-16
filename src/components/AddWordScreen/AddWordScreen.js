@@ -75,7 +75,7 @@ function AddWordScreen({
                     </div>
                 </div>
             </div>
-            <Button label="Save" onClick={addWordToCollection} className="btn" />
+            <Button label="Save" onClick={addWordToCollection} className="btn text-mode-color" />
         </div>
     );
 }
