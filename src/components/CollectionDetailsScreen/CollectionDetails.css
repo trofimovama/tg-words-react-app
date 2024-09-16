@@ -25,6 +25,7 @@
     justify-content: center;
     gap: 7px;
     width: 100%;
+    margin-bottom: 7px;
 }
 
 .word-item {

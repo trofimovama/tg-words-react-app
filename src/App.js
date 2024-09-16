@@ -34,6 +34,7 @@ function App() {
     const [confirmDeleteWord, setConfirmDeleteWord] = useState(false);
     const [alertMessage, setAlertMessage] = useState(null);
     const [wordInputError, setWordInputError] = useState(false);
+    const [definitionInputError, setDefinitionInputError] = useState(false);
 
     const menuRef = useRef(null);
 
@@ -104,11 +105,24 @@ function App() {
     };
     
     const addWordToCollection = () => {
+        let hasError = false;
+    
         if (newWord.trim() === '') {
             setWordInputError(true);
-            return;
+            hasError = true;
+        } else {
+            setWordInputError(false);
         }
-
+    
+        if (newDefinition.trim() === '') {
+            setDefinitionInputError(true);
+            hasError = true;
+        } else {
+            setDefinitionInputError(false);
+        }
+    
+        if (hasError) return;
+    
         const updatedCollection = { 
             ...selectedCollection, 
             words: [...selectedCollection.words, { word: newWord, definition: newDefinition, type: wordType }] 
@@ -118,7 +132,6 @@ function App() {
         setNewWord('');
         setNewDefinition('');
         setWordType('');
-        setWordInputError(false);
         setScreen('collectionDetails');
     };
     
@@ -274,6 +287,7 @@ function App() {
                     setScreen={setScreen}
                     selectedCollection={selectedCollection}
                     wordInputError={wordInputError}
+                    definitionInputError={definitionInputError}
                 />
             )}
             {screen === 'editWord' && (
