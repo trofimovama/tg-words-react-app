@@ -214,7 +214,7 @@ function App() {
             <div className="header">
                 <div className='back-btn-container'>
                     <i class="fa-solid fa-chevron-left text-mode-color"></i>
-                    <button className="btn-back" onClick={() => {
+                    <button className="btn-back text-mode-color" onClick={() => {
                         setConfirmDelete(false)
                         setMenuVisible(false);
                     }}>Back</button>

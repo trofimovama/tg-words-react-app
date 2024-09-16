@@ -28,7 +28,7 @@ function EditWordScreen({
                 <div className='edit-word-content'>
                     <div>
                         <i class="fa-solid fa-chevron-left text-mode-color"></i>
-                        <Button label="Back" onClick={() => setConfirmDeleteWord(false)} className='link-btn' />
+                        <Button label="Back" onClick={() => setConfirmDeleteWord(false)} className='link-btn text-mode-color' />
                     </div>
                     <div className='title-container'>
                         <h1>Edit word</h1>
@@ -58,7 +58,7 @@ function EditWordScreen({
                 <div className='edit-word-content'>
                     <div className='back-btn-container'>
                         <i class="fa-solid fa-chevron-left text-mode-color"></i>
-                        <Button label={selectedCollection.name} onClick={() => setScreen('collectionDetails')} className='link-btn' />
+                        <Button label={selectedCollection.name} onClick={() => setScreen('collectionDetails')} className='link-btn text-mode-color' />
                     </div>
                     <div className='title-container'>
                         <h1>Edit word</h1>
