@@ -6,7 +6,7 @@ function CreateCollectionScreen({ newCollectionName, setNewCollectionName, saveN
         <div className="container new-collection">
             <div className="header">
                 <div className='back-btn-container'>
-                    <i class="fa-solid fa-chevron-left text-mode-color"></i>
+                    <i className="fa-solid fa-chevron-left text-mode-color"></i>
                     <Button label="Back" onClick={() => setScreen('home')} className='link-btn text-mode-color' />
                 </div>
                 <h1>New Collection</h1>

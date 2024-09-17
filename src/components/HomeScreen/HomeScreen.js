@@ -32,7 +32,7 @@ function HomeScreen({ collections, openCollection, setScreen }) {
                                     <p>{collection.words.length} {collection.words.length === 1 ? 'word' : 'words'}</p>
                                 </div>
                                 <div>
-                                    <i class="fa-solid fa-chevron-right fa-lg text-mode-color"></i>
+                                    <i className="fa-solid fa-chevron-right fa-lg text-mode-color"></i>
                                 </div>
                             </div>
                         ))}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { init } from '@amplitude/analytics-browser';
+
 import './App.css';
 import './components/HomeScreen/HomeScreen.css';
 import './components/Button/Button.css';
@@ -16,6 +18,9 @@ import Alert from './components/Alert/Alert.js';
 import PlayScreen from './components/PlayScreen/PlayScreen.js';
 
 const tg = window.Telegram.WebApp;
+init('a2e28dbb744a162a222131464fb28f1', {
+    defaultTracking: true,
+  });
 
 function App() {
     const [screen, setScreen] = useState('home');
@@ -163,7 +168,7 @@ function App() {
     const renderEditNameScreen = () => (
         <div className="container edit-name-screen">
             <div className="back-btn-container">
-                <i class="fa-solid fa-chevron-left text-mode-color"></i>
+                <i className="fa-solid fa-chevron-left text-mode-color"></i>
                 <Button
                     label="Back"
                     onClick={() => {
@@ -216,7 +221,7 @@ function App() {
         <div className="container delete-confirmation">
             <div className="header">
                 <div className='back-btn-container'>
-                    <i class="fa-solid fa-chevron-left text-mode-color"></i>
+                    <i className="fa-solid fa-chevron-left text-mode-color"></i>
                     <button className="btn-back text-mode-color" onClick={() => {
                         setConfirmDelete(false)
                         setMenuVisible(false);

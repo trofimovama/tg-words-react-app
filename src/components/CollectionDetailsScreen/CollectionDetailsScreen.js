@@ -46,21 +46,21 @@ function CollectionDetailsScreen({
         <div className="container add-word-container">
             <div className='top-collection-name'>
                 <div className='btn-back-container'>
-                    <i class="fa-solid fa-chevron-left text-mode-color"></i>
+                    <i className="fa-solid fa-chevron-left text-mode-color"></i>
                     <Button label="Back" onClick={() => setScreen('home')} className='link-btn text-mode-color' />
                 </div>
                 <div className='section-title'>
                     <h1>{selectedCollection.name}</h1>
-                    <i class="fa-solid fa-ellipsis-vertical menu fa-2x text-mode-color" onClick={toggleMenu}></i>
+                    <i className="fa-solid fa-ellipsis-vertical menu fa-2x text-mode-color" onClick={toggleMenu}></i>
                 </div>
                 {menuVisible && (
                     <div className='edit-remove-group' ref={menuRef}>
                         <div className='edit-group-button'>
-                            <i class="fa-regular fa-pen-to-square text-mode-color"></i>
+                            <i className="fa-regular fa-pen-to-square text-mode-color"></i>
                             <Button label="Edit Name" onClick={() => setEditNameMode(true)} className='link-btn' />
                         </div>
                         <div className='remove-group-button'>
-                            <i class="fa-regular fa-trash-can text-mode-color"></i>
+                            <i className="fa-regular fa-trash-can text-mode-color"></i>
                             <Button label="Delete Collection" onClick={() => setConfirmDelete(true)} className='link-btn' />
                         </div>
                     </div>
@@ -72,7 +72,7 @@ function CollectionDetailsScreen({
             ) : (
                 <div className='collection-content'>
                     <button onClick={() => setScreen('play')} className='btn btn-play text-mode-color'>
-                        <i class="fa-regular fa-circle-play text-mode-color"></i> Play
+                        <i className="fa-regular fa-circle-play text-mode-color"></i> Play
                     </button>
                     <input 
                         type="text" 

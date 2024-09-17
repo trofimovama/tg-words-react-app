@@ -1,4 +1,5 @@
 import React from 'react';
+import { logEvent } from '@amplitude/analytics-browser';
 import Button from '../Button/Button.js';
 import './AddWordScreen.css';
 
@@ -15,10 +16,16 @@ function AddWordScreen({
     wordInputError,
     definitionInputError,
 }) {
+
+    const handleWordTypeClick = (type) => {
+        setWordType(type);
+        logEvent('WordType Button Clicked:', { wordType: type });
+    };
+
     return (
         <div className="container add-word-screen">
             <div>
-                <i class="fa-solid fa-chevron-left text-mode-color"></i>
+                <i className="fa-solid fa-chevron-left text-mode-color"></i>
                 <Button
                     label={`${selectedCollection.name}`}
                     onClick={() => setScreen('collectionDetails')}
@@ -54,22 +61,22 @@ function AddWordScreen({
                         <Button
                             label="Verb"
                             className={wordType === 'Verb' ? 'selected' : ''}
-                            onClick={() => setWordType('Verb')}
+                            onClick={() => handleWordTypeClick('Verb')}
                         />
                         <Button
                             label="Noun"
                             className={wordType === 'Noun' ? 'selected' : ''}
-                            onClick={() => setWordType('Noun')}
+                            onClick={() => handleWordTypeClick('Noun')}
                         />
                         <Button
                             label="Adj."
                             className={wordType === 'Adj.' ? 'selected' : ''}
-                            onClick={() => setWordType('Adj.')}
+                            onClick={() => handleWordTypeClick('Adj.')}
                         />
                         <Button
                             label="Adv."
                             className={wordType === 'Adv.' ? 'selected' : ''}
-                            onClick={() => setWordType('Adv.')}
+                            onClick={() => handleWordTypeClick('Adv.')}
                         />
                     </div>
                 </div>
