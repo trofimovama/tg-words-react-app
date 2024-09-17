@@ -13,9 +13,9 @@ function PlayScreen({ selectedCollection, setScreen }) {
     const [swipeCount, setSwipeCount] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [retryMode, setRetryMode] = useState(false);
-    
     const [touchStartX, setTouchStartX] = useState(null);
     const [touchEndX, setTouchEndX] = useState(null);
+    const [animationClass, setAnimationClass] = useState('');
 
     const words = retryMode ? unknownWords : selectedCollection.words;
 
@@ -25,7 +25,8 @@ function PlayScreen({ selectedCollection, setScreen }) {
             setUnknownWords((prev) => [...prev, currentWord]);
         }
 
-        setTimeout(() => goToNextWord(), 100);
+        setAnimationClass('slide-out-left');
+        setTimeout(() => goToNextWord(), 500);
     };
 
     const handleSwipeRight = () => {
@@ -38,16 +39,16 @@ function PlayScreen({ selectedCollection, setScreen }) {
             setUnknownWords((prev) => prev.filter((word) => word !== currentWord));
         }
 
-        setTimeout(() => goToNextWord(), 100);
+        setAnimationClass('slide-out-right');
+        setTimeout(() => goToNextWord(), 500);
     };
 
     const goToNextWord = () => {
         setSwipeCount((prev) => prev + 1);
         setIsFlipped(false);
+        setAnimationClass('');
 
-        if (swipeCount + 1 >= words.length) {
-            return;
-        }
+        if (swipeCount + 1 >= words.length) return;
 
         setWordIndex((prev) => (prev + 1) % words.length);
     };
@@ -125,7 +126,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
-                    <div className={`word-card ${isFlipped ? 'flipped' : ''}`}>
+                    <div className={`word-card ${isFlipped ? 'flipped' : ''} ${animationClass}`}>
                         <div className="card-face front">
                             <strong>{words[wordIndex]?.word}</strong>
                         </div>
