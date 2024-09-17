@@ -13,6 +13,9 @@ function PlayScreen({ selectedCollection, setScreen }) {
     const [swipeCount, setSwipeCount] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [retryMode, setRetryMode] = useState(false);
+    
+    const [touchStartX, setTouchStartX] = useState(null);
+    const [touchEndX, setTouchEndX] = useState(null);
 
     const words = retryMode ? unknownWords : selectedCollection.words;
 
@@ -71,6 +74,27 @@ function PlayScreen({ selectedCollection, setScreen }) {
         return totalWords > 0 ? Math.round((unknownCount / totalWords) * 100) : 0;
     };
 
+    const handleTouchStart = (e) => {
+        setTouchStartX(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+        setTouchEndX(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (touchStartX && touchEndX) {
+            const difference = touchStartX - touchEndX;
+            if (difference > 50) {
+                handleSwipeLeft();
+            } else if (difference < -50) {
+                handleSwipeRight();
+            }
+        }
+        setTouchStartX(null);
+        setTouchEndX(null);
+    };
+
     const data = {
         labels: ['Known', 'Still Learning'],
         datasets: [
@@ -85,7 +109,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
     return (
         <div className="container play-screen">
             <div className="top-bar">
-                <i class="fa-solid fa-xmark fa-2x text-mode-color" onClick={() => setScreen('collectionDetails')}></i>
+                <i className="fa-solid fa-xmark fa-2x text-mode-color" onClick={() => setScreen('collectionDetails')}></i>
             </div>
 
             <div className="counters">
@@ -95,7 +119,12 @@ function PlayScreen({ selectedCollection, setScreen }) {
             </div>
 
             {swipeCount < words.length ? (
-                <div className="card-container">
+                <div
+                    className="card-container"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                >
                     <div className={`word-card ${isFlipped ? 'flipped' : ''}`}>
                         <div className="card-face front">
                             <strong>{words[wordIndex]?.word}</strong>
@@ -103,7 +132,7 @@ function PlayScreen({ selectedCollection, setScreen }) {
                         <div className="card-face back">
                             <strong>{words[wordIndex]?.definition || 'No definition available'}</strong>
                         </div>
-                        <i class="fa-solid fa-arrows-rotate flip-icon text-mode-color"  onClick={toggleFlip}></i>
+                        <i className="fa-solid fa-arrows-rotate flip-icon text-mode-color" onClick={toggleFlip}></i>
                     </div>
                     <div className='game-navigation-content'>
                         <span className='text-mode-color'>Swipe left to mark as Still learning</span>

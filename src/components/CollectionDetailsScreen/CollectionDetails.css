@@ -29,7 +29,7 @@
 }
 
 .word-item {
-    border: 1px solid lightgray;
+    border: 1px solid var(--border-color);
     padding: 15px;
     border-radius: 20px;
     cursor: pointer;
@@ -37,7 +37,7 @@
 }
 
 .word-item:hover {
-    background-color: aliceblue;
+    background-color: var(--background-color);
 }
 
 .play-btn-container {
@@ -58,7 +58,7 @@
     width: auto;
     max-width: 200px;
     cursor: pointer;
-    border: 1px solid lightgray;
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     cursor: pointer;
 }
@@ -73,7 +73,7 @@
 
 .edit-group-button:hover,
 .remove-group-button:hover {
-    background-color: aliceblue;
+    background-color: var(--background-color)
 }
 
 .edit-group-button:hover {
@@ -85,7 +85,7 @@
 }
 
 .edit-group-button {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .section-title {

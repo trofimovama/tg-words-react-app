@@ -180,7 +180,10 @@ function App() {
                 onChange={(e) => setEditedName(e.target.value)}
                 placeholder={selectedCollection ? selectedCollection.name : 'New Collection Name'}
             />
-            <button className="btn text-mode-color" onClick={saveCollectionName}>Save</button>
+            <button className="btn text-mode-color" onClick={() => {
+                saveCollectionName();
+                setMenuVisible(false);
+            }}>Save</button>
         </div>
     );
 
