@@ -38,6 +38,10 @@ h1 {
   margin-bottom: 10px;
 }
 
+h1, h2 {
+  text-align: center;
+}
+
 ul li {
   list-style: none;
 }

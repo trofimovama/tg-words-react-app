@@ -1,0 +1,17 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F8F5F5;
+  border-radius: 15px 15px 0 0;
+  padding: 20px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.app-title {
+  font-weight: bold;
+}
